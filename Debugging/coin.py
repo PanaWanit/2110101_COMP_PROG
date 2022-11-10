@@ -19,16 +19,25 @@ if __name__ == '__main__':
   print('Input: ', end= '')
   a, b, T = [int(x) for x in input().split(' ')]
 
+  if a==0 and b==0:
+    print("IMPOSSIBLE")
+    quit()
   # T cannot be composed by coin_a and coin_b 
   # if it cannot be divided by their greatest common divisor
 
+
   if(T % gcd(a, b) != 0):
     print("IMPOSSIBLE")
+  
 
   else:
+    ch=0
     na = 0  
     yes = False
-    while(not yes and T-a*na>0):
+    if b==0:
+        a,b = b,a
+        ch=1
+    while(not yes and T-a*na>=0):
       if (T - a*na) % b == 0:
         nb = (T - a*na)//b
         yes = True
@@ -36,7 +45,9 @@ if __name__ == '__main__':
       na += 1
 
 
-  if(yes):
+  if(yes and ch==0):
     print(f"na: {na}, nb: {nb}")
+  elif(yes and ch==1):
+    print(f"na: {nb}, nb: {na}")
   else:
     print("IMPOSSIBLE")

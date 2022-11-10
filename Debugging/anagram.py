@@ -18,6 +18,8 @@ def find_anagram(x):
   global words
   # get key of input x
   key = get_key(x.strip())
+  if key not in words:
+      return []
   # return all possible anagram of x
   return words[key]
 
